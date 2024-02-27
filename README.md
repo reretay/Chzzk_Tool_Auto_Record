@@ -3,6 +3,7 @@
 
 스트리밍 서비스 '네이버 치지직(CHZZK)'과 관련한 여러 도구를 제작합니다.
 > **Note:** 네이버 측의 요청이 있는 경우 코드가 삭제되거나 비공개될 수 있습니다.
+> 
 > **Note:** API 주소가 https://api.chzzk.naver.com/service/v2/channels/{channel_id}/live-detail 로 변경되었습니다.
 
 <br/>
