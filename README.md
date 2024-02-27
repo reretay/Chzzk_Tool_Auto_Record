@@ -51,6 +51,6 @@ streamlink "https://chzzk.naver.com/live/{고유ID}" {화질} -o {내보낼 파�
 실행 후에는 방송이 켜지면 자동으로 알림을 발송하고, 방송이 켜지지 않은 경우 10초에 한 번씩 방송 상태를 확인합니다.
 
 <br/><br/><br/>
-### Auto_Record
+### Auto_Record (Auto_Record.py)
 스트리머가 방송을 켜면 Streamlink를 통해 자동으로 녹화하는 코드입니다.
 > **Note:** streamlink 플러그인 디렉터리에 Streamlink plugin (NaverChzzk.py)를 넣고 사용하여 주십시오.
