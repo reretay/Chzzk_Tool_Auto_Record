@@ -44,7 +44,7 @@ def check_and_rename_file(file_name_recieve):
         new_file_name = f"{base}_{index}{ext}"
         file_path_chk = f"{path}{new_file_name}"
         index += 1
-    return new_file_name
+    return new_file_name if index > 1 else file_name_recieve  # 파일이 존재하지 않을 때 처리 추가
 
 # 주기적으로 Naver API 호출하여 상태 확인 및 녹화 시작
 def check_and_record_periodically():
