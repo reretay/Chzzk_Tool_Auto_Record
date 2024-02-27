@@ -77,7 +77,7 @@ def check_and_record_periodically():
             # CLOSE 상태가 될 때까지 대기
             while check_naver_status() == 'OPEN':
                 print("Checking for Close status")
-                time.sleep(30)  # 30초마다 확인 (조절 가능)
+                time.sleep(10)  # 30초마다 확인 (조절 가능)
         else:
             print("Not Open Status. Checking again in 10 seconds.")
             time.sleep(10)  # CLOSE 상태인 경우 10초마다 확인 (조절 가능)
