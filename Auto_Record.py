@@ -38,15 +38,13 @@ def remove_special_characters(text):
 # 파일 이름 중복 확인 및 변경 함수 정의
 def check_and_rename_file(file_name_recieve):
     file_path_chk = f"{path}{file_name_recieve}"
-    if os.path.exists(file_path_chk):
-        base, ext = os.path.splitext(file_name_recieve)
-        index = 1
-        while True:
-            new_file_name = f"{base}_{index}{ext}"
-            if not os.path.exists(new_file_name):
-                return new_file_name
-            index += 1
-    return file_name_recieve
+    base, ext = os.path.splitext(file_name_recieve)
+    index = 1
+    while os.path.exists(file_path_chk):
+        new_file_name = f"{base}_{index}{ext}"
+        file_path_chk = f"{path}{new_file_name}"
+        index += 1
+    return new_file_name
 
 # 주기적으로 Naver API 호출하여 상태 확인 및 녹화 시작
 def check_and_post_periodically():
