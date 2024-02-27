@@ -47,7 +47,7 @@ def check_and_rename_file(file_name_recieve):
     return new_file_name
 
 # 주기적으로 Naver API 호출하여 상태 확인 및 녹화 시작
-def check_and_post_periodically():
+def check_and_record_periodically():
     while True:
         naver_status = check_naver_status()
         print(naver_status)
@@ -83,4 +83,4 @@ def check_and_post_periodically():
             time.sleep(10)  # CLOSE 상태인 경우 10초마다 확인 (조절 가능)
 
 if __name__ == "__main__":
-    check_and_post_periodically()
+    check_and_record_periodically()
