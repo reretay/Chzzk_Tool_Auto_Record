@@ -11,6 +11,9 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
 }
 
+#경로지정
+path = f"/recordings/"
+
 #채널ID
 print("채널 ID를 입력해주세요.\n ex) 75cbf189b3bb8f9f687d2aca0d0a382b\n")
 channel_id = input().strip()
@@ -32,6 +35,19 @@ def remove_special_characters(text):
     # 정규 표현식을 사용하여 특수문자를 제거하고 반환
     return re.sub(r'[^\w\s]', '', text)
 
+# 파일 이름 중복 확인 및 변경 함수 정의
+def check_and_rename_file(file_name_recieve):
+    file_path_chk = f"{path}{file_name_recieve}"
+    if os.path.exists(file_path_chk):
+        base, ext = os.path.splitext(file_name_recieve)
+        index = 1
+        while True:
+            new_file_name = f"{base}_{index}{ext}"
+            if not os.path.exists(new_file_name):
+                return new_file_name
+            index += 1
+    return file_name_recieve
+
 # 주기적으로 Naver API 호출하여 상태 확인 및 녹화 시작
 def check_and_post_periodically():
     while True:
@@ -50,9 +66,14 @@ def check_and_post_periodically():
             title_removed = remove_special_characters(title)
             channel_removed = remove_special_characters(channel)
             time_value_removed = remove_special_characters(time_value)
+
+            # 파일 이름 설정
+            file_name = f"{channel_removed}_{time_value_removed}_{title_removed}.ts"
+            file_name = check_and_rename_file(file_name)
+            file_path = f"{path}{file_name}"
             
             # 실시간 녹화 시작
-            record_command = f'streamlink --loglevel none https://chzzk.naver.com/live/{channel_id} 1080p --output "/recordings/{channel_removed}_{time_value_removed}_{title_removed}.ts"'
+            record_command = f'streamlink --loglevel none https://chzzk.naver.com/live/{channel_id} 1080p --output "{file_path}"'
             subprocess.run(record_command, shell=True)
             
             # CLOSE 상태가 될 때까지 대기
