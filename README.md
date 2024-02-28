@@ -54,3 +54,5 @@ streamlink "https://chzzk.naver.com/live/{고유ID}" {화질} -o {내보낼 파�
 ### Auto_Record (Auto_Record.py)
 스트리머가 방송을 켜면 Streamlink를 통해 자동으로 녹화하는 코드입니다.
 > **Note:** streamlink 플러그인 디렉터리에 Streamlink plugin (NaverChzzk.py)를 넣고 사용하여 주십시오.
+>
+> **Note:** 연령제한이 걸린 스트리밍은 녹화가 불가능합니다.
