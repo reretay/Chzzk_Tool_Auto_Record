@@ -23,7 +23,7 @@ naver_api_url = f'https://api.chzzk.naver.com/service/v2/channels/{channel_id}/l
 
 # Naver API에서 상태 확인 함수
 def check_naver_status():
-    response = requests.get(naver_api_url)
+    response = requests.get(naver_api_url, headers=self.headers)
     if response.status_code == 200:
         return response.json().get('content', {}).get('status')
     else:
