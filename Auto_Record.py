@@ -10,6 +10,7 @@ import sys
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
 }
+useragent = f'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
 
 #경로지정
 path = f"/recordings/"
@@ -23,7 +24,7 @@ naver_api_url = f'https://api.chzzk.naver.com/service/v2/channels/{channel_id}/l
 
 # Naver API에서 상태 확인 함수
 def check_naver_status():
-    response = requests.get(naver_api_url, headers=self.headers)
+    response = requests.get(naver_api_url, headers=headers)
     if response.status_code == 200:
         return response.json().get('content', {}).get('status')
     else:
@@ -71,7 +72,7 @@ def check_and_record_periodically():
             file_path = f"{path}{file_name}"
             
             # 실시간 녹화 시작
-            record_command = f'streamlink --loglevel none https://chzzk.naver.com/live/{channel_id} 1080p --output "{file_path}"'
+            record_command = f'streamlink --loglevel none --http-header "User-Agent={useragent}" https://chzzk.naver.com/live/{channel_id} 1080p --output "{file_path}"'
             subprocess.run(record_command, shell=True)
             
             # CLOSE 상태가 될 때까지 대기
